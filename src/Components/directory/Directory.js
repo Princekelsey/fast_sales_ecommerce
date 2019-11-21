@@ -40,8 +40,8 @@ const Directory = () => {
   ]);
   return (
     <div className="directory-menu">
-      {sessions.map(({ id, title, imageUrl, size }) => (
-        <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+      {sessions.map(({ id, ...otherProps }) => (
+        <MenuItem key={id} {...otherProps} />
       ))}
     </div>
   );
