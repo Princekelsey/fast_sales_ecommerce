@@ -7,6 +7,7 @@ import SignInAndSignUp from "./Pages/signAndSignUp/SignInAndSignUp";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import "./App.css";
+import CustomSignIn from "./Components/customSignIn/CustomSignIn";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -36,7 +37,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/shop" component={Shop} />
-        <Route path="/signin" component={SignInAndSignUp} />
+        <Route path="/signin" component={CustomSignIn} />
       </Switch>
     </div>
   );

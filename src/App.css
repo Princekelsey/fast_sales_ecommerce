@@ -1,11 +1,13 @@
 body {
-  font-family: "open Sans Condensed";
+  font-family: "Poppins", sans-serif;
   padding: 20px 60px;
   background-color: #fafcfc;
 }
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 a {
