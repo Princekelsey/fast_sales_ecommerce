@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Homepage from "./Pages/homepage/Homepage";
 import Shop from "./Pages/shop/Shop";
 import Header from "./Components/header/Header";
-import SignInAndSignUp from "./Pages/signAndSignUp/SignInAndSignUp";
+import CustomSignIn from "./Components/customSignIn/CustomSignIn";
+import CustomSignUp from "./Components/customSignUp/CustomSignUp";
+// import SignInAndSignUp from "./Pages/signAndSignUp/SignInAndSignUp";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { setCurrentUser } from "./redux/user/userActions";
 
 import "./App.css";
-import CustomSignIn from "./Components/customSignIn/CustomSignIn";
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const dispatch = useDispatch();
+  const setUser = user => dispatch(setCurrentUser(user));
 
   useEffect(() => {
     let unsubscribeFromAuth = null;
@@ -18,26 +22,28 @@ const App = () => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot(snapShot => {
-          setCurrentUser({
+          setUser({
             id: snapShot.id,
             ...snapShot.data()
           });
         });
       }
-      setCurrentUser(userAuth);
+      setUser(userAuth);
     });
     return () => {
       unsubscribeFromAuth();
     };
+    // eslint-disable-next-line
   }, []);
 
   return (
     <div>
-      <Header currentUser={currentUser} />
+      <Header />
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/shop" component={Shop} />
         <Route path="/signin" component={CustomSignIn} />
+        <Route path="/signup" component={CustomSignUp} />
       </Switch>
     </div>
   );

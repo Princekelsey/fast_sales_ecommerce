@@ -51,7 +51,7 @@ const CustomSignIn = () => {
           <span className="option">or use your account</span>
           <div className={`${user.email.length ? "focus" : ""} input-div one `}>
             <div className="icon">
-              <i className="fas fa-user" />
+              <i className="fas fa-envelope"></i>
             </div>
             <div>
               <h5>Email</h5>
@@ -61,6 +61,7 @@ const CustomSignIn = () => {
                 name="email"
                 value={user.email}
                 onChange={handleChange}
+                required
               ></input>
             </div>
           </div>
@@ -78,6 +79,7 @@ const CustomSignIn = () => {
                 name="password"
                 value={user.password}
                 onChange={handleChange}
+                required
               ></input>
             </div>
           </div>
