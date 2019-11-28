@@ -4,7 +4,7 @@ import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 import signUp from "./signUp.svg";
 import profile_pic from "../customSignIn/profile.svg";
 
-import "./customSignUp.css";
+import "./customSignUp.style.scss";
 
 const initialState = {
   displayName: "",

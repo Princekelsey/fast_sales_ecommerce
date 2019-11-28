@@ -1,14 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ShoppingCartIcon from "../shopping-cart-icon/ShoppingCartIcon";
 import { ReactComponent as Logo } from "../../utils/logo.svg";
 import { auth } from "../../firebase/firebase.utils";
 
 import "./header.style.scss";
+import Cart from "../cart/Cart";
 
 const Header = () => {
-  const currentUser = useSelector(({ user }) => user.currentUser);
-  // console.log(currentUser);
+  const state = useSelector(
+    ({ user: { currentUser }, cart: { isHidden } }) => ({
+      currentUser,
+      isHidden
+    })
+  );
+
+  const { currentUser, isHidden } = state;
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -31,7 +39,9 @@ const Header = () => {
             SIGN IN
           </Link>
         )}
+        <ShoppingCartIcon />
       </div>
+      {!isHidden && <Cart />}
     </div>
   );
 };

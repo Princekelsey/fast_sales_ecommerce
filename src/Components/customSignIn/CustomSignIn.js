@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
 import sign_in from "./sign-in.svg";
 import profile_pic from "./profile.svg";
-import "./customSignIn.css";
+import "./customSignIn.style.scss";
 
 const CustomSignIn = () => {
   const [user, setUser] = useState({ email: "", password: "" });
