@@ -1,11 +1,12 @@
 import React from "react";
+import CustomButton from "../customButton/CustomButton";
 import "./cart.style.scss";
 
 const Cart = () => {
   return (
     <div className="cart-dropdown">
       <div className="cart-items"></div>
-      <button className="btn">Go to Checkout</button>
+      <CustomButton> Go to Checkout</CustomButton>
     </div>
   );
 };

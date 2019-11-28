@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import CustomButton from "../customButton/CustomButton";
 import signUp from "./signUp.svg";
 import profile_pic from "../customSignIn/profile.svg";
 
@@ -146,7 +147,7 @@ const CustomSignUp = () => {
           <Link to="/signin" className="sign-in-link">
             Already have an account? Sign In
           </Link>
-          <input type="submit" className="btn" value="Sign Up"></input>
+          <CustomButton type="submit">Sign Up</CustomButton>
         </form>
       </div>
     </div>
