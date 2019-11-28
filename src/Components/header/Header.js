@@ -7,7 +7,7 @@ import { auth } from "../../firebase/firebase.utils";
 import "./header.style.scss";
 
 const Header = () => {
-  const currentUser = useSelector(state => state.user.currentUser);
+  const currentUser = useSelector(({ user }) => user.currentUser);
   // console.log(currentUser);
   return (
     <div className="header">
