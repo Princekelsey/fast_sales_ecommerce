@@ -1,18 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "../shopping-cart-icon/ShoppingCartIcon";
 import { ReactComponent as Logo } from "../../utils/logo.svg";
 import { auth } from "../../firebase/firebase.utils";
+import { selectCartHidden } from "../../redux/cart/cartSelectors";
+import { selectCurrentUser } from "../../redux/user/userSelectors";
+
+import Cart from "../cart/Cart";
 
 import "./header.style.scss";
-import Cart from "../cart/Cart";
 
 const Header = () => {
   const state = useSelector(
-    ({ user: { currentUser }, cart: { isHidden } }) => ({
-      currentUser,
-      isHidden
+    createStructuredSelector({
+      currentUser: selectCurrentUser,
+      isHidden: selectCartHidden
     })
   );
 
