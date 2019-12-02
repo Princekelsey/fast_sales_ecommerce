@@ -10,15 +10,13 @@ import "./cart.style.scss";
 
 const Cart = ({ history }) => {
   const dispatch = useDispatch();
-  const state = useSelector(
+  const { cartItems } = useSelector(
     createStructuredSelector({
       cartItems: selectCartItems
     })
   );
 
   const toggleCart = () => dispatch(toggleCartHidden());
-
-  const { cartItems } = state;
 
   return (
     <div className="cart-dropdown">

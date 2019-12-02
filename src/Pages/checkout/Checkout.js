@@ -9,14 +9,12 @@ import {
 import "./checkOut.style.scss";
 
 const Checkout = () => {
-  const state = useSelector(
+  const { cartItems, totalPrice } = useSelector(
     createStructuredSelector({
       cartItems: selectCartItems,
       totalPrice: selectCartTotalPrice
     })
   );
-
-  const { cartItems, totalPrice } = state;
 
   return (
     <div className="checkout-page">

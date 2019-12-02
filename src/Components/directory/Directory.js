@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import MenuItem from "../menu-item/MenuItem";
-import sessionCollection from "./sessionCollection";
+import { selectDirectorySections } from "../../redux/directory/directorySelectors";
 
 import "./directory.style.scss";
 
 const Directory = () => {
-  const [sessions] = useState(sessionCollection);
+  const { sections } = useSelector(
+    createStructuredSelector({
+      sections: selectDirectorySections
+    })
+  );
   return (
     <div className="directory-menu">
-      {sessions.map(({ id, ...otherProps }) => (
+      {sections.map(({ id, ...otherProps }) => (
         <MenuItem key={id} {...otherProps} />
       ))}
     </div>

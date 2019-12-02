@@ -16,7 +16,7 @@ import { selectCurrentUser } from "./redux/user/userSelectors";
 import "./App.css";
 
 const App = () => {
-  const state = useSelector(
+  const { currentUser } = useSelector(
     createStructuredSelector({
       currentUser: selectCurrentUser
     })
@@ -54,16 +54,12 @@ const App = () => {
         <Route
           exact
           path="/signin"
-          render={() =>
-            state.currentUser ? <Redirect to="/" /> : <CustomSignIn />
-          }
+          render={() => (currentUser ? <Redirect to="/" /> : <CustomSignIn />)}
         />
         <Route
           exact
           path="/signup"
-          render={() =>
-            state.currentUser ? <Redirect to="/" /> : <CustomSignUp />
-          }
+          render={() => (currentUser ? <Redirect to="/" /> : <CustomSignUp />)}
         />
       </Switch>
     </div>
