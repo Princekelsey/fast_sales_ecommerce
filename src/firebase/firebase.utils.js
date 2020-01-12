@@ -3,14 +3,14 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const config = {
-  apiKey: "AIzaSyAQ5PhY4H4hp_1Sy-TKkrjM_Qd9hUIYx70",
-  authDomain: "fast-sales-db.firebaseapp.com",
-  databaseURL: "https://fast-sales-db.firebaseio.com",
-  projectId: "fast-sales-db",
-  storageBucket: "fast-sales-db.appspot.com",
-  messagingSenderId: "230003527384",
-  appId: "1:230003527384:web:02cc402f0c9f61be3791ad",
-  measurementId: "G-48FTRZQZ4J"
+  apiKey: "AIzaSyB4jE0OEe_pn-uAPWRFyLipUiTMaTPm5HE",
+  authDomain: "e-sales-db.firebaseapp.com",
+  databaseURL: "https://e-sales-db.firebaseio.com",
+  projectId: "e-sales-db",
+  storageBucket: "e-sales-db.appspot.com",
+  messagingSenderId: "433565797064",
+  appId: "1:433565797064:web:c84678a46ef16f477ff3fd",
+  measurementId: "G-X188E10Y4L"
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
