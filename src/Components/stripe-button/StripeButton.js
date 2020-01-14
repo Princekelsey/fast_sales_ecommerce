@@ -4,7 +4,7 @@ import logo from "../../utils/logo.svg";
 
 const StripeButton = ({ price }) => {
   const stripePrice = price * 100;
-  const publishedKey = process.env.REACT_APP_PUBLISHED_KEY;
+  const publishedKey = "pk_test_6KSmsUgbuD3GDXT582kj7hRT00GfzdL681";
 
   const onToken = token => {
     console.log(token);
