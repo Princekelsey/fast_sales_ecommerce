@@ -37,6 +37,10 @@ const App = () => {
         });
       }
       setUser(userAuth);
+      // addCollectionAndDocuments(
+      //   "collections",
+      //   collectionArray.map(({ title, items }) => ({ title, items }))
+      // );
     });
     return () => {
       unsubscribeFromAuth();
