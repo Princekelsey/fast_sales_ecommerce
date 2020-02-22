@@ -9,9 +9,8 @@ import CustomSignIn from "./Components/customSignIn/CustomSignIn";
 import CustomSignUp from "./Components/customSignUp/CustomSignUp";
 import Checkout from "./Pages/checkout/Checkout";
 
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-import { setCurrentUser } from "./redux/user/userActions";
 import { selectCurrentUser } from "./redux/user/userSelectors";
+import { checkUserSession } from "./redux/user/userActions";
 
 import "./App.css";
 
@@ -22,29 +21,10 @@ const App = () => {
     })
   );
   const dispatch = useDispatch();
-  const setUser = user => dispatch(setCurrentUser(user));
+  const checkSession = () => dispatch(checkUserSession());
 
   useEffect(() => {
-    let unsubscribeFromAuth = null;
-    unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot(snapShot => {
-          setUser({
-            id: snapShot.id,
-            ...snapShot.data()
-          });
-        });
-      }
-      setUser(userAuth);
-      // addCollectionAndDocuments(
-      //   "collections",
-      //   collectionArray.map(({ title, items }) => ({ title, items }))
-      // );
-    });
-    return () => {
-      unsubscribeFromAuth();
-    };
+    checkSession();
     // eslint-disable-next-line
   }, []);
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import { useDispatch } from "react-redux";
+import { signUpStart } from "../../redux/user/userActions";
 import CustomButton from "../customButton/CustomButton";
 import signUp from "./signUp.svg";
 import profile_pic from "../customSignIn/profile.svg";
@@ -16,26 +17,22 @@ const initialState = {
 
 const CustomSignUp = () => {
   const [newUser, setNewUser] = useState(initialState);
+  const dispatch = useDispatch();
+  const signUpNewUser = userCredentails =>
+    dispatch(signUpStart(userCredentails));
 
-  const handleSubmit = async event => {
+  const handleSubmit = event => {
     event.preventDefault();
-    const { displayName, email, password, confirmPassword } = newUser;
+    const { password, confirmPassword, email, displayName } = newUser;
+
+    const userData = { email, password, displayName };
 
     if (password !== confirmPassword) {
       alert("Password must match");
       return;
     }
 
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await createUserProfileDocument(user, { displayName });
-      setNewUser(initialState);
-    } catch (error) {
-      console.log(error);
-    }
+    signUpNewUser(userData);
   };
 
   const handleChange = event => {

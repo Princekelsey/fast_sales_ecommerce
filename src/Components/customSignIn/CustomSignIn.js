@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
+import { useDispatch } from "react-redux";
+import {
+  googleSignInStart,
+  emailSignInStart
+} from "../../redux/user/userActions";
 import CustomButton from "../customButton/CustomButton";
 import sign_in from "./sign-in.svg";
 import profile_pic from "./profile.svg";
@@ -8,18 +12,17 @@ import "./customSignIn.style.scss";
 
 const CustomSignIn = () => {
   const [user, setUser] = useState({ email: "", password: "" });
+  const dispatch = useDispatch();
+  const googleSignIn = () => dispatch(googleSignInStart());
+  const emailSign = (email, password) =>
+    dispatch(emailSignInStart({ email, password }));
 
   const handleSubmit = async event => {
     event.preventDefault();
 
     const { email, password } = user;
 
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      setUser({ email: "", password: "" });
-    } catch (error) {
-      console.log(error.message);
-    }
+    emailSign(email, password);
   };
 
   const handleChange = event => {
@@ -40,10 +43,7 @@ const CustomSignIn = () => {
               <i className="fab fa-facebook-f"></i>
             </span>
             <span className="social">
-              <i
-                className="fab fa-google-plus-g"
-                onClick={signInWithGoogle}
-              ></i>
+              <i className="fab fa-google-plus-g" onClick={googleSignIn}></i>
             </span>
             <span className="social">
               <i className="fab fa-linkedin-in"></i>
